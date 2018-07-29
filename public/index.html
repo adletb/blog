@@ -38,14 +38,38 @@
 		    <div class="block lg">
 		        <div class="block-title">
 		              Мои публикации
-		          <button class="button button-righted">	Добавить пост
-		          </button>
+		          <button class="button button-righted"> Добавить пост </button>
 		        </div>
+						<div class="grid" ng-controller="ProfileCtrl as vm">
+						<div class="grid-item" ng-repeat="blog in vm.blogs">
+							<div class="grid-editor">
+								<span>
+									<img src="images/edit.svg">
+								</span>
+								<span>
+									<img src="images/garbage.svg">
+								</span>
+							</div>
+							<div class="grid-item--img" >
+								<img src="">
+							</div>
+							<span class="grid-item--title" ng-bind="blog.title">
+								Tut budet title
+							</span>
+							<span class="grid-item--subtitle" ng-bind="blog.description">
+								Tut budet discription
+							</span>
+							<span class="grid-item--subtitle" ng-bind="blog._id" ng-module="vm.id">
+
+							</span>
+						</div>
+					</div>
 		    </div>
-		</main>
+		 </main>
 
 
-	<!-- <script src="js/vendor/ng.min.js"></script> -->
+	<script src="js/vendor/ng.min.js"></script>
+	<script src="app.js"></script>
 </body>
 
 </html>

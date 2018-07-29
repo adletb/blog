@@ -16,6 +16,13 @@ app.use(bodyParser.json({limit: '100mb'}));
 app.use(bodyParser.urlencoded({limit: '100mb', extended: true}));
 
 
+app.get('/api/blog', function(req, res, next){
+	Blog.find().exec(function(err, blogs){
+		if(err) return res.status(400).send({msg: "Error"});
+		res.status(200).send(blogs);
+	})
+});
+
 
 
 app.listen(process.env.PORT || 3000, function(){
