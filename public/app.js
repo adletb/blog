@@ -7,7 +7,6 @@ function ProfileCtrl($http, $scope){
 
   var vm = this;
 
-
     $http.get('/api/blog')
     .success(function(data){
     	console.log(data);
@@ -18,6 +17,14 @@ function ProfileCtrl($http, $scope){
     });
 
 
+    vm.del = function(blog){
+
+      $http.delete("/api/blog/" + blog._id)
+      .success(function(data){
+          var index = vm.blogs.indexOf(blog);
+          vm.blogs.splice(index, 1);
+      }).error(function(err){ alert(err.msg);  });
+     }
 
 
 

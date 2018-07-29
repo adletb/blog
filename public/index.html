@@ -38,7 +38,9 @@
 		    <div class="block lg">
 		        <div class="block-title">
 		              Мои публикации
-		          <button class="button button-righted"> Добавить пост </button>
+		          <button class="button button-righted">
+								 Добавить пост
+							</button>
 		        </div>
 						<div class="grid" ng-controller="ProfileCtrl as vm">
 						<div class="grid-item" ng-repeat="blog in vm.blogs">
@@ -47,7 +49,7 @@
 									<img src="images/edit.svg">
 								</span>
 								<span>
-									<img src="images/garbage.svg">
+									<img src="images/garbage.svg" ng-click="vm.del(blog)">
 								</span>
 							</div>
 							<div class="grid-item--img" >

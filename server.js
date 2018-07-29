@@ -15,6 +15,12 @@ app.use(express.static(path.join(__dirname, 'public'), {maxAge: 1 })); // что
 app.use(bodyParser.json({limit: '100mb'}));
 app.use(bodyParser.urlencoded({limit: '100mb', extended: true}));
 
+new Blog({
+	title: "For remove",
+	description: "remove"
+}).save(function(err, blog){
+	// console.log(blog);
+});
 
 app.get('/api/blog', function(req, res, next){
 	Blog.find().exec(function(err, blogs){
@@ -23,7 +29,14 @@ app.get('/api/blog', function(req, res, next){
 	})
 });
 
+app.delete('/api/blog/:id', function(req, res, next){
+	// console.log(req.params.id);
+	Blog.remove({_id: req.params.id}).exec(function(err){
+		if(err) return res.status(400).send({msg: "Not deleted"})
+		res.status(200).end();
+	})
 
+});
 
 app.listen(process.env.PORT || 3000, function(){
 	console.log('Server is listening on port', process.env.PORT || 3000 );
