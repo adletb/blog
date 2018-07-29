@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="ppp">
 <head>
 	<title>Profile Blog</title>
 	<meta charset="utf-8">
@@ -9,7 +9,43 @@
 	<meta name="viewport" content="width=device-width, inital-scale=1.0">
 </head>
 <body>
-		<h1>AngularJS</h1>
+		<header class="header">
+			<div class="header-logo">
+				<img src="images/logo.svg">
+			</div>
+			<div class="header-search">
+				<div>
+					<input type="" name="">
+					<img src="images/search.svg">
+				</div>
+			</div>
+			<div class="header-nav">
+				<ul>
+					<li ui-sref="home">
+						Главная
+					<li ui-sref="profile">
+						Профиль
+					</li>
+				</ul>
+			</div>
+				<div class="header-ava">
+					<img src="images/ava.svg">
+				</div>
+			</header>
+		<div class="main">
+		    <div class="block small">
+		    </div>
+		    <div class="block lg">
+		        <div class="block-title">
+		              Мои публикации
+		          <button class="button button-righted">	Добавить пост
+		          </button>
+		        </div>
+		    </div>
+		</main>
+
+
+	<!-- <script src="js/vendor/ng.min.js"></script> -->
 </body>
 
 </html>
