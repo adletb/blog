@@ -3,6 +3,12 @@ var logger = require('morgan');
 var path = require('path');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var multer = require('multer');
+
+
+var uploade = multer({dest: 'public/images/content'});
+mongoose.connect("mongodb://127.0.0.1:27017/projectdb");
+var Blog = require('./server/models/Blog.js');
 
 var app = express();
 app.use(express.static(path.join(__dirname, 'public'), {maxAge: 1 })); // чтоб начал грузить index.html
