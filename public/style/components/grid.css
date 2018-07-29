@@ -1,0 +1,84 @@
+.grid {
+	width: 100%;
+	padding: 20px 10px;
+	display: flex;
+	flex-wrap: wrap;
+
+}
+
+.grid-item {
+	width: 25%;
+	min-width: 300px;
+	padding: 10px;
+	cursor: pointer;
+	position: relative;
+}
+
+.grid-item--img {
+	width: 100%;
+	height: 300px;
+}
+
+.grid-item--img img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.grid-item--title {
+	display: block;
+	font-size: 18px;
+	line-height: 1.4;
+	color: rgba(0,0,0,.87);
+}
+.grid-item:hover {
+	background-color: #f6fcfe;
+}
+
+
+.grid-item--subtitle {
+	display: block;
+	font-size: 14px;
+	line-height: 1.4;
+	color: rgba(0,0,0,.54);
+}
+
+.grid-editor {
+	width: 60px;
+	height: 30px;
+	position: absolute;
+	top: -30px;
+	right: 0;
+	background-color: #f6fcfe;
+	display: none;
+	padding-right: 10px;
+}
+
+.grid-editor span {
+	width: 30px;
+	display: inline-block;
+	padding: 3px;
+	height: 100%;
+
+}
+.grid-editor span img{
+	width: 100%;
+	height: 100%;
+}
+
+.grid-item:hover > .grid-editor {
+	display: flex;
+}
+
+.grid-item--author {
+	height: 40px;
+	width: 100%;
+	display: flex;
+}
+
+.grid-item--author img {
+	width: 30px;
+	height: 30px;
+	margin-right: 20px;
+  border-radius: 100%;
+}

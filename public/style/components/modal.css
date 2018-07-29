@@ -1,0 +1,84 @@
+.modal {
+	width: 100%;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 99999;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal-backdrop {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: rgba(0,0,0,.6);
+	z-index: 1;
+}
+
+.modal-inner {
+	z-index: 2;
+	position: relative;
+	max-width: 400px;
+	min-width: 300px;
+	width: 100%;
+	background-color: #fff;
+	border-radius: 15%;
+
+}
+
+.modal-title {
+ height: 50px;
+ width: 100%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ background-color: #1ba3d6;
+ color: #fff;
+ font-weight: 300;
+ font-size: 20px;
+ border-top-left-radius: 15px;
+ border-top-right-radius: 15px;
+}
+
+.modal-close {
+ width: 30px;
+ height: 30px;
+ padding: 7px;
+ position: absolute;
+ right: 10px;
+ top: 10px;
+ cursor: pointer;
+}
+
+.modal-close img {
+ width: 100%;
+ height: 100%;
+}
+
+
+.modal-form {
+ width: 100%;
+ padding: 20px 30px 30px;
+}
+
+.modal-link {
+	text-align: center;
+	padding-top: 10px; 
+	cursor: pointer;
+	color: #7ad5f8 
+}
+
+.modal-link:hover {
+     text-decoration: underline;	
+}
+
+.form-field--errorText {
+	color: #ff0000;
+	margin-top: 10px;
+	font-size: 14px;
+}

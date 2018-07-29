@@ -1,0 +1,62 @@
+.comment-block {
+    border-top: 1px solid #ddd;
+    margin: 10px 0;
+}
+
+.comment-title {
+   font-size: 18px;
+   line-height: 1.4;
+   color: rgba(0,0,0, .87);
+   font-weight: 700;
+   margin: 20px 0;
+}
+
+.comments-item {
+  display: flex;
+  margin: 20px 0;
+  position: relative;
+
+}
+
+.comments-item--img  {
+  width: 40px;
+}
+
+.comments-item--img img {
+  width: 100%;
+}
+
+.comments-item--content {
+  width: calc(100% - 40px);
+  padding-left: 20px;
+}
+
+.comments-item--content h3{
+  font-weight: 700;
+  margin: 5px 0;
+  color: rgba(0,0,0,.87);
+}
+
+.comments-item--content p{
+  font-size: 14px;
+  color: rgba(0,0,0,.54);
+}
+
+.comments-item--content span{
+  font-size: 12px;
+  color: rgba(0,0,0,.54);
+}
+
+.comments-item--delete {
+  position: absolute;
+  right: 20px;
+  top: 5px;
+  width: 35px;
+  height: 35px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.comments-item--delete img {
+  width: 100%;
+}
