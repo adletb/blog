@@ -38,6 +38,18 @@ app.delete('/api/blog/:id', function(req, res, next){
 
 });
 
+app.post('/api/blog', function(req, res, next){
+	new Blog({
+		title: req.body.title,
+		description: req.body.description
+	}).save(function(err, blog){
+		if(err) return res.status(400).send({msg: 'error'});
+		res.status(200).send(blog);
+	});
+});
+
+
+
 app.listen(process.env.PORT || 3000, function(){
 	console.log('Server is listening on port', process.env.PORT || 3000 );
 });

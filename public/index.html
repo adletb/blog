@@ -35,14 +35,14 @@
 		<div class="main">
 		    <div class="block small">
 		    </div>
-		    <div class="block lg">
+		    <div class="block lg" ng-controller="ProfileCtrl as vm">
 		        <div class="block-title">
 		              Мои публикации
 		          <button class="button button-righted" ng-click="vm.addModal=true">
 								 Добавить пост
 							</button>
 		        </div>
-						<div class="grid" ng-controller="ProfileCtrl as vm">
+						<div class="grid">
 						<div class="grid-item" ng-repeat="blog in vm.blogs">
 							<div class="grid-editor">
 								<span>
