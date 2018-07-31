@@ -53,7 +53,7 @@
 								</span>
 							</div>
 							<div class="grid-item--img" >
-								<img src="">
+								<img ng-src="{{blog.img}}">
 							</div>
 							<span class="grid-item--title" ng-bind="blog.title">
 								Tut budet title
@@ -85,6 +85,15 @@
 												<textarea class="input textarea" ng-model="vm.description">
 												</textarea>
 										</div>
+										<div class="form-field form-field--file">
+											<input type="file" class="input-file"
+											custom-on-change="readURL"/>
+											<span>Выберите файл</span>
+											<img src="images/file.svg">
+										</div>
+										<div class="form-field">
+											<img style="width: 100px" ng-src="{{vm.imgPreload}}" >
+										</div>
 										<div class="form-field">
 											<button class="button" type="submit">Сохранить пост</button>
 										</div>
@@ -98,6 +107,8 @@
 
 	<script src="js/vendor/ng.min.js"></script>
 	<script src="app.js"></script>
+	<script src="js/directives/directive.custom-on-change.js">
+	</script>
 </body>
 
 </html>

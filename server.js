@@ -4,6 +4,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var multer = require('multer');
+var fs = require('fs');
 
 
 var uploade = multer({dest: 'public/images/content'});
@@ -38,13 +39,27 @@ app.delete('/api/blog/:id', function(req, res, next){
 
 });
 
-app.post('/api/blog', function(req, res, next){
+app.post('/api/blog', uploade.single("img"), function(req, res, next){
 	new Blog({
 		title: req.body.title,
 		description: req.body.description
 	}).save(function(err, blog){
-		if(err) return res.status(400).send({msg: 'error'});
-		res.status(200).send(blog);
+
+			var tempPath = req.file.path;
+
+			var targetPath = path.resolve('public/images/content/'+blog._id+'.'+req.file.originalname.split('.').slice(-1).pop());
+
+			fs.rename(tempPath, targetPath, function(err) {
+				if (err) return next(err);
+
+				blog.img = "images/content/"+blog.
+				_id+'.'+req.file.originalname.split('.').slice(-1).pop();
+				blog.save(function(err, blogsaved){
+					if(err) return res.status(400).send({msg:"error"});
+					res.status(200).send(blogsaved);
+				});
+			});
+
 	});
 });
 
