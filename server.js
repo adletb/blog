@@ -63,7 +63,9 @@ app.post('/api/blog', uploade.single("img"), function(req, res, next){
 	});
 });
 
-
+app.get('*', function(req, res, next){
+	res.redirect('/#' + req.originalUrl);
+});
 
 app.listen(process.env.PORT || 3000, function(){
 	console.log('Server is listening on port', process.env.PORT || 3000 );

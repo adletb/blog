@@ -1,0 +1,70 @@
+<div class="modal" ng-if="vm.addModal">
+  <div class="modal-backdrop" ng-click="vm.addModal=false">
+  </div>
+  <div class="modal-inner">
+      <div class="modal-close" ng-click="vm.addModal=false">
+        <img src="images/cancel.svg">
+      </div>
+      <div class="modal-title" >
+        Добавление поста
+      </div>
+      <div class="modal-form">
+        <form ng-submit="vm.saveBlog()">
+          <div class="form-field">
+            <input type="text" class="input" ng-model="vm.title">
+          </div>
+          <div class="form-field">
+              <textarea class="input textarea" ng-model="vm.description">
+              </textarea>
+          </div>
+          <div class="form-field form-field--file">
+            <input type="file" class="input-file"
+            custom-on-change="readURL"/>
+            <span>Выберите файл</span>
+            <img src="images/file.svg">
+          </div>
+          <div class="form-field">
+            <img style="width: 100px" ng-src="{{vm.imgPreload}}" >
+          </div>
+          <div class="form-field">
+            <button class="button" type="submit">Сохранить пост</button>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>
+
+<div class="block small">
+</div>
+<div class="block lg">
+    <div class="block-title">
+          Мои публикации
+      <button class="button button-righted" ng-click="vm.addModal=true">
+         Добавить пост
+      </button>
+    </div>
+    <div class="grid">
+    <div class="grid-item" ng-repeat="blog in vm.blogs">
+      <div class="grid-editor">
+        <span>
+          <img src="images/edit.svg">
+        </span>
+        <span>
+          <img src="images/garbage.svg" ng-click="vm.del(blog)">
+        </span>
+      </div>
+      <div class="grid-item--img" >
+        <img ng-src="{{blog.img}}">
+      </div>
+      <span class="grid-item--title" ng-bind="blog.title">
+        Tut budet title
+      </span>
+      <span class="grid-item--subtitle" ng-bind="blog.description">
+        Tut budet discription
+      </span>
+      <span class="grid-item--subtitle" ng-bind="blog._id" ng-module="vm.id">
+
+      </span>
+    </div>
+  </div>
+</div>

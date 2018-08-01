@@ -1,77 +1,29 @@
-angular.module("ppp", [])
-.controller("ProfileCtrl", ProfileCtrl);
+angular.module("ppp", ['ui.router']).config(routeConfig);
 
-ProfileCtrl.$inject = ['$http', '$scope']; // для запросов на сервер
+routeConfig.$inject =
+['$stateProvider', '$locationProvider', '$urlRouterProvider'];
 
-function ProfileCtrl($http, $scope){
+function  routeConfig($stateProvider, $locationProvider, $urlRouterProvider) {
+    $locationProvider.html5Mode(true);
 
-  var vm = this;
+    $urlRouterProvider.otherwise('/');//Если нет страницы редирект на страницу root
 
-    $scope.readURL = function(){
-      if (event.target.files&&event.target.files[0]){
-          vm.img = event.target.files[0];
-      };
+    $stateProvider
+        .state('home', {
+            url: '/',
+            templateUrl: "views/home.html",
 
-      var reader = new FileReader();
-
-      reader.onload = function(e){
-          console.log(e.target.result);
-          $scope.$apply(function(){
-              vm.imgPreload = e.target.result;
-          })
-      }
-
-      reader.readAsDataURL(event.target.files[0]);
-    };
-
-    $http.get('/api/blog')
-    .success(function(data){
-    	console.log(data);
-    	vm.blogs = data;
-    })
-    .error(function(err){
-    	alert(err.msg);
-    });
-
-
-    vm.del = function(blog){
-
-      $http.delete("/api/blog/" + blog._id)
-      .success(function(data){
-          var index = vm.blogs.indexOf(blog);
-          vm.blogs.splice(index, 1);
-      }).error(function(err){ alert(err.msg);  });
-     }
-
-    vm.saveBlog = function() {
-      console.log("1");
-      if(vm.title&&vm.title!=""&&vm.description&&vm.description!=""){
-
-        console.log("2");
-
-        var obj = new FormData();
-
-        obj.append("title", vm.title);
-        obj.append("description", vm.description);
-        obj.append("img", vm.img);
-
-        $http.post("/api/blog", obj, {
-                headers:{'Content-Type': undefined}
-            })
-    		.success(function(data){
-    			console.log("3");
-    			vm.title="";
-    			vm.description="";
-    			vm.blogs.push(data);
-          vm.addModal = false;
-    		})
-    		.error(function(err){
-    			alert(err.msg);
-    		});
-
-      }else{
-        console.log("error");
-      }
-    }
-
+        })
+        .state('profile', {
+            url: '/profile',
+            templateUrl: "views/profile.html",
+            controller: "ProfileCtrl",
+            controllerAs: "vm"
+        })
+        .state('singlePost', {
+            url: '/singlePost/:id',
+            templateUrl: "views/singlpost.html",
+            controller: "SinglePostCtrl",
+            controllerAs: "vm"
+        })
 }
