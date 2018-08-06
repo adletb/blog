@@ -30,9 +30,52 @@
 				</ul>
 			</div>
 				<div class="header-ava">
-					<img src="images/ava.svg">
+					<img src="images/ava.svg"
+					 ng-click="vm.showLogin=true"
+			</div>
+
+			<div class="modal" ng-if="vm.showLogin">
+			<div class="modal-backdrop" ng-click="vm.showLogin=false">
+
+			</div>
+			<div class="modal-inner">
+				<div class="modal-close" ng-click="vm.showLogin=false">
+					<img src="images/cancel.svg">
 				</div>
-			</header>
+				<div class="modal-title" >
+					Войти в систему
+				</div>
+				<div class="modal-form">
+					<form ng-submit="vm.login()">
+						<div class="form-field">
+							<input type="text" class="input"
+							ng-class="{'is-error': vm.errorsLogin.email}"
+							ng-model="vm.emailLogin" placeholder="Введите email">
+							<div ng-if="vm.errorsLogin.email" class="form-field--errorText" ng-bind="vm.errorsLogin.email"></div>
+						</div>
+
+						<div class="form-field">
+							<input type="password" class="input"
+							ng-class="{'is-error': vm.errorsLogin.password}"
+							ng-model="vm.passwordLogin" placeholder="Введите пароль">
+							<div ng-if="vm.errorsLogin.password" class="form-field--errorText" ng-bind="vm.errorsLogin.password"></div>
+						</div>
+						<div class="form-field">
+							<button class="button" type="submit">Войти</button>
+						</div>
+
+						<div class="modal-link" ng-click="
+						vm.showLogin=false; vm.showSignup=true">
+							Создать аккаунт
+						</div>
+					</form>
+				</div>
+			</div>
+
+		</div>
+
+
+		</header>
 		<main class="main" ui-view>
 
 		</main>
