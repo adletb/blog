@@ -10,7 +10,7 @@
 	<meta name="viewport" content="width=device-width, inital-scale=1.0">
 </head>
 <body>
-		<header class="header">
+		<header class="header" ng-controller="HeaderCtrl as vm">
 			<div class="header-logo">
 				<img src="images/logo.svg">
 			</div>
@@ -30,50 +30,110 @@
 				</ul>
 			</div>
 				<div class="header-ava">
-					<img src="images/ava.svg"
-					 ng-click="vm.showLogin=true"
+					<img ng-if="!vm.user" src="images/ava.svg"
+					 ng-click="vm.showLogin=true">
+					 <img ng-if="vm.user" ng-src="{{vm.user.ava}}">
+					 <div ng-if="vm.user" ng-click="vm.logout()">
+					 		logout
+					 </div>
 			</div>
 
 			<div class="modal" ng-if="vm.showLogin">
-			<div class="modal-backdrop" ng-click="vm.showLogin=false">
+				<div class="modal-backdrop" ng-click="vm.showLogin=false">
+				</div>
 
+				<div class="modal-inner">
+					<div class="modal-close" ng-click="vm.showLogin=false">
+						<img src="images/cancel.svg">
+					</div>
+					<div class="modal-title" >
+						Войти в систему
+					</div>
+					<div class="modal-form">
+						<form ng-submit="vm.login()">
+							<div class="form-field">
+								<input type="text" class="input"
+								ng-class="{'is-error': vm.errorsLogin.email}"
+								ng-model="vm.emailLogin" placeholder="Введите email">
+								<div ng-if="vm.errorsLogin.email" class="form-field--errorText" ng-bind="vm.errorsLogin.email"></div>
+							</div>
+
+							<div class="form-field">
+								<input type="password" class="input"
+								ng-class="{'is-error': vm.errorsLogin.password}"
+								ng-model="vm.passwordLogin" placeholder="Введите пароль">
+								<div ng-if="vm.errorsLogin.password" class="form-field--errorText" ng-bind="vm.errorsLogin.password"></div>
+							</div>
+							<div class="form-field">
+								<button class="button" type="submit">Войти</button>
+							</div>
+
+							<div class="modal-link" ng-click="
+							vm.showLogin=false; vm.showSignup=true">
+								Создать аккаунт
+							</div>
+						</form>
+					</div>
+				</div>
+		</div>
+
+		<div class="modal" ng-if="vm.showSignup" >
+			<div class="modal-backdrop" ng-click="vm.showSignup=false; vm.errors=false">
 			</div>
 			<div class="modal-inner">
-				<div class="modal-close" ng-click="vm.showLogin=false">
+				<div class="modal-close" ng-click="vm.showSignup=false; vm.errors=false">
 					<img src="images/cancel.svg">
 				</div>
 				<div class="modal-title" >
-					Войти в систему
+					Создать аккаунт
 				</div>
 				<div class="modal-form">
-					<form ng-submit="vm.login()">
+					<form ng-submit="vm.singup()">
 						<div class="form-field">
 							<input type="text" class="input"
-							ng-class="{'is-error': vm.errorsLogin.email}"
-							ng-model="vm.emailLogin" placeholder="Введите email">
-							<div ng-if="vm.errorsLogin.email" class="form-field--errorText" ng-bind="vm.errorsLogin.email"></div>
+							ng-class="{'is-error': vm.errors.email}"
+							ng-model="vm.email"
+							placeholder="Введите email">
+							<div ng-if="vm.errors.email" class=
+							"form-field--errorText" ng-bind="
+							vm.errors.email"></div>
+						</div>
+						<div class="form-field">
+							<input type="text" class="input"
+							ng-class="{'is-error': vm.errors.first_name}"
+							ng-model="vm.first_name" placeholder="Введите имя">
+							<div ng-if="vm.errors.first_name"  class="form-field--errorText"
+							 ng-bind="vm.errors.first_name"></div>
 						</div>
 
+						<div class="form-field">
+							<input type="text" class="input"
+							ng-class="{'is-error': vm.errors.last_name}"
+							ng-model="vm.last_name" placeholder="Введите фамилию">
+							<div ng-if="vm.errors.last_name" class="form-field--errorText"
+							ng-bind="vm.errors.last_name"></div>
+						</div>
 						<div class="form-field">
 							<input type="password" class="input"
-							ng-class="{'is-error': vm.errorsLogin.password}"
-							ng-model="vm.passwordLogin" placeholder="Введите пароль">
-							<div ng-if="vm.errorsLogin.password" class="form-field--errorText" ng-bind="vm.errorsLogin.password"></div>
+							ng-class="{'is-error': vm.errors.password}"
+							ng-model="vm.password" placeholder="Введите пароль">
+							<div ng-if="vm.errors.password" class="form-field--errorText"
+							ng-bind="vm.errors.password"></div>
 						</div>
 						<div class="form-field">
-							<button class="button" type="submit">Войти</button>
+							<input type="password2" class="input"
+							ng-class="{'is-error': vm.errors.password2}"
+							ng-model="vm.password2" placeholder="Подтвердите пароль">
+							<div ng-if="vm.errors.password2" class="form-field--errorText"
+							ng-bind="vm.errors.password2"></div>
 						</div>
-
-						<div class="modal-link" ng-click="
-						vm.showLogin=false; vm.showSignup=true">
-							Создать аккаунт
+						<div class="form-field">
+							<button class="button" type="submit">register</button>
 						</div>
 					</form>
 				</div>
 			</div>
-
 		</div>
-
 
 		</header>
 		<main class="main" ui-view>
@@ -85,6 +145,9 @@
 	<script src="js/vendor/ng-route.min.js"></script>
 	<script src="app.js"></script>
 	<script src="js/controllers/controller.profile.js">
+	</script>
+	<script src="js/controllers/controller.header.js">
+
 	</script>
 	<script src="js/directives/directive.custom-on-change.js">
 	</script>
